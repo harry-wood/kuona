@@ -8,19 +8,19 @@ This program is free software; see the LICENSE file for details.
 #}
 <html>
 <head>
-   <title>Kuona - Imagery micro-tasking for OpenStreetMap</title>
+   <title>Kuona - Any easy way to help OpenStreetMap</title>
    <meta name="viewport" content="width=275">
    <link href="kuona.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    {% if got_tile %}
+    {% if got_tile %}   
     <form method="POST">
-    <p>Click on any buildings you see. Especially on large areas of them <small>(<a href="http://ecn.t3.tiles.virtualearth.net/tiles/a03331303231122033.jpeg?g=1145">like this</a>)</small>.</p>
     <input type="hidden" name="tilex" value="{{tilex}}">
     <input type="hidden" name="tiley" value="{{tiley}}">
     <input type="hidden" name="zoom" value="{{zoom}}">
-    <table cellspacing="5">
-    <tr><td>
+    
+    
+     <div id="imagerytiles">
             <table cellspacing="0" cellpadding="0">
             <tr>
                 <td><input type="image" name="click0" src="{{tile_src[0]}}" width="256" height="256"></td>
@@ -31,26 +31,59 @@ This program is free software; see the LICENSE file for details.
                 <td><input type="image" name="click3" src="{{tile_src[3]}}" width="256" height="256"></td>
             </tr>
             </table>
-    </td><td>
-        <b>DO Mark</b><ul><li>Villages</li><li>Dams</li></ul>
-        <b>DO Not Mark</b><ul><li>Roads</li><li>Cattle Pens</li><li>Fields</li></ul>
-    </td></tr>
-    </table>
-    <p><input type="submit" name="nothing" value="There's nothing here"></p>
-    </form>
+     </div>
+     
+     <div id="content">
+        <h1>Kuona</h1>
+        
+        <div id="instructions">
+           <h2>Mali building mapping</h2>
+           <p>
+           Click on any buildings you see. Especially on large areas of them
+           <small>(<a href="http://ecn.t3.tiles.virtualearth.net/tiles/a03331303231122033.jpeg?g=1145">like this</a>)</small>
+           </p>
+           
+           <b>DO Mark</b>
+           <ul>
+           <li>Villages</li>
+           <li>Dams</li>
+           </ul>
+           <br>
+           <b>DO Not Mark</b>
+           <ul>
+           <li>Roads</li>
+           <li>Cattle Pens</li>
+           <li>Fields</li>                     
+           </ul>
+        </div>
+ 
+        <p><input type="submit" name="nothing" value="There's nothing here" /></p>
+     
+        
+        <div id="stats">
+        {% if confirmation %}
+           <p>Currently verifying already-seen tiles.</p>
+        {% endif %}
+        {% if remaining %}
+           <p>Pictures remaining: {{remaining}}</p>
+        {% endif %}
+        
+    {#<p>This application is currently running on my home computer,
+    on a residential Internet con&shy;nec&shy;tion. Lately it's being <i>very</i> unreliable.
+    If you get a connection error, just reload the page.</p>
+    <p>I will try to move it to an OpenStreetMap dev server soon.</p>#}
+       
+        </div>
+            
+    </div>
+    
     {% else %}
     <p>There are currently no tiles to process. Come back later!</p>
     {% endif %}
-
-    <div style="font-size: 8pt; width:50em; text-align: justify;">
-    {% if confirmation %}
-    <p>Currently verifying already-seen tiles.</p>
-    {% endif %}
-    {% if remaining %}
-    <p>Pictures remaining: {{remaining}}</p>
-    {% endif %}
     
-    </div>
+    <p id="footer">
+        <a href="https://github.com/nicolas17/kuona">kuona on github</a>
+    </p>
 </body>
 </html>
 {# vim: set filetype=jinja: #}

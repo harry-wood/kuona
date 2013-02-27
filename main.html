@@ -8,12 +8,9 @@ This program is free software; see the LICENSE file for details.
 #}
 <html>
 <head>
-<meta name="viewport" content="width=275">
-<style type="text/css">
-table input[type=image] {
-    display: block;
-}
-</style>
+   <title>Kuona - Imagery micro-tasking for OpenStreetMap</title>
+   <meta name="viewport" content="width=275">
+   <link href="kuona.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     {% if got_tile %}
@@ -52,10 +49,7 @@ table input[type=image] {
     {% if remaining %}
     <p>Pictures remaining: {{remaining}}</p>
     {% endif %}
-    {#<p>This application is currently running on my home computer,
-    on a residential Internet con&shy;nec&shy;tion. Lately it's being <i>very</i> unreliable.
-    If you get a connection error, just reload the page.</p>
-    <p>I will try to move it to an OpenStreetMap dev server soon.</p>#}
+    
     </div>
 </body>
 </html>
